@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+:root {
+    --body-bg: hsl(0, 0%, 13%);
+}
+
 html {
     color-scheme: dark light;
 }
@@ -13,6 +17,8 @@ body {
     font-size: 1.25rem;
     line-height: 1.5;
     margin: 0;
+    background: var(--body-bg);
+    color: white;
 }
 
 .wrapper {
@@ -48,6 +54,41 @@ section {
     z-index: -1;
     inset: 0;
     transform: skewY(var(--skew-angle));
+}
+
+.spikes {
+    --spike-color: var(--body-bg);
+    --spike-width: 50px;
+    --spike-height: 10px;
+    position: relative;
+    color: black;
+    background: linear-gradient(
+        to right,
+        #fdc830,
+        #f37335
+    );
+}
+
+.spikes::before,
+.spikes::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: var(--spike-height);
+    background: var(--spike-color);
+    -webkit-mask-image: url('assets/images/triangle.svg');
+    mask-image: url('assets/images/triangle.svg');
+    -webkit-mask-size: var(--spike-width) var(--spike-height);
+    mask-size: var(--spike-width) var(--spike-height);
+}
+
+.spikes::before {
+    top: 0;
+}
+
+.spikes::after {
+    bottom: 0;
+    transform: rotate(.5turn);
 }
 
 
